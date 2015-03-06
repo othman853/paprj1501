@@ -16,9 +16,11 @@ import br.com.othman853.paprj1501.model.HelloHibernate;
 public class FirstController {
 	
 	private Result result;
+	private Session session;
 	
-	public FirstController(Result result){
+	public FirstController(Result result, Session session){
 		this.result = result;
+		this.session = session;
 	}
 	
 	@Path("/")
@@ -28,17 +30,6 @@ public class FirstController {
 	
 	@Get("/hiber/{text}")
 	public void testHibernate(String text){
-	
-		
-		Configuration config = new Configuration();
-		
-		config.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/hiber_test");
-		config.setProperty("hibernate.connection.username", "padrao");
-		config.setProperty("hibernate.connection.password", "pass@word1");
-		
-		config.configure();
-		
-		Session session = config.buildSessionFactory().openSession();
 		
 		Transaction tx = session.beginTransaction();
 		session.save(new HelloHibernate(text));
@@ -54,17 +45,8 @@ public class FirstController {
 		
 		List<HelloHibernate> list;
 		
-		Configuration config = new Configuration();
-		
-		config.setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/hiber_test");
-		config.setProperty("hibernate.connection.username", "padrao");
-		config.setProperty("hibernate.connection.password", "pass@word1");
-		
-		config.configure();
-		
-		Session session = config.buildSessionFactory().openSession();
 		list = session.createCriteria(HelloHibernate.class).list();
-		session.close();
+		
 		
 		for(HelloHibernate hib : list){
 			System.out.println(hib.getHelloText());
