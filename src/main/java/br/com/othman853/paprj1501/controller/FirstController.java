@@ -18,9 +18,8 @@ public class FirstController {
 	private Result result;
 	private Session session;
 	
-	public FirstController(Result result, Session session){
-		this.result = result;
-		this.session = session;
+	public FirstController(Result result){
+		this.result = result;		
 	}
 	
 	@Path("/")
@@ -54,5 +53,4 @@ public class FirstController {
 		
 		return list;		
 	}
-
 }
