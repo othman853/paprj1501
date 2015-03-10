@@ -1,5 +1,8 @@
 package br.com.othman853.paprj1501.dao;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.annotation.PreDestroy;
 
 import org.hibernate.SessionFactory;
@@ -22,12 +25,24 @@ public class SessionFactoryCreator implements ComponentFactory<SessionFactory>{
 	private void create(){
 		Configuration configuration = new Configuration();
 		
-		configuration.setProperty("hibernate.connection.url", System.getenv("PAPRJ1501_DB_URL"));
-		configuration.setProperty("hibernate.connection.username", System.getenv("PAPRJ1501_DB_USER"));
-		configuration.setProperty("hibernate.connection.password", System.getenv("PAPRJ1501_DB_PASS"));
-		configuration.configure();
-		
-		factory = configuration.buildSessionFactory();
+		URI dbUri;
+		try {
+			dbUri = new URI(System.getenv("DATABASE_URL"));
+		    String username = dbUri.getUserInfo().split(":")[0];
+		    String password = dbUri.getUserInfo().split(":")[1];
+		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+			
+			configuration.setProperty("hibernate.connection.url", dbUrl);				
+			configuration.setProperty("hibernate.connection.username", username);
+			configuration.setProperty("hibernate.connection.password", password);
+			configuration.configure();
+			
+			factory = configuration.buildSessionFactory();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
