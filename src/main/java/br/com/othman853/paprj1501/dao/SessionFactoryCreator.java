@@ -28,19 +28,18 @@ public class SessionFactoryCreator implements ComponentFactory<SessionFactory>{
 		URI dbUri;
 		try {
 			dbUri = new URI(System.getenv("DATABASE_URL"));
+			
 		    String username = dbUri.getUserInfo().split(":")[0];
 		    String password = dbUri.getUserInfo().split(":")[1];
-		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-
+		    String url = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();		    
 			
-			configuration.setProperty("hibernate.connection.url", dbUrl);				
+			configuration.setProperty("hibernate.connection.url", url);				
 			configuration.setProperty("hibernate.connection.username", username);
 			configuration.setProperty("hibernate.connection.password", password);
-			configuration.configure();
+			configuration.configure();			
 			
 			factory = configuration.buildSessionFactory();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
+		} catch (URISyntaxException e) {			
 			e.printStackTrace();
 		}
 	}
