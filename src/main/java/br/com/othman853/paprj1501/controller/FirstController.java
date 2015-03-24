@@ -18,8 +18,9 @@ public class FirstController {
 	private Result result;
 	private Session session;
 	
-	public FirstController(Result result){
+	public FirstController(Result result, Session session){
 		this.result = result;		
+		this.session = session;
 	}
 	
 	@Path("/")
@@ -40,7 +41,7 @@ public class FirstController {
 	}
 	
 	
-	public List<HelloHibernate> list(){
+	public void list(){
 		
 		List<HelloHibernate> list;
 		
@@ -50,7 +51,6 @@ public class FirstController {
 		for(HelloHibernate hib : list){
 			System.out.println(hib.getHelloText());
 		}
-		
-		return list;		
+		result.include("list",list);				
 	}
 }
