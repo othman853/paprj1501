@@ -11,8 +11,8 @@
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.format_sql">false</property>
 		<property name="hbm2ddl.auto">update</property>
-			
-		<mapping class="br.com.othman853.paprj1501.model.HelloHibernate" />		
+				
+		<mapping class="br.com.othman853.paprj1501.model.User" />
 	</session-factory>
 </hibernate-configuration>
 

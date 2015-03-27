@@ -23,25 +23,25 @@
 					</div>
 					
 					<div class="panel-body">
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="${linkTo[UserController].register}" method="post">
 							<div class="form-group">
-								<label>Login:</label>
-								<input type="text" class="form-control" placeholder="Digite o login desejado">
+								<label for="user.login">Login:</label>
+								<input type="text" class="form-control" name="user.login" placeholder="Digite o login desejado">
 							</div>
 							
 							<div class="form-group">
-								<label>Senha:</label>
-								<input type="password" class="form-control" placeholder="Digite a senha desejada">
+								<label for="user.password">Senha:</label>
+								<input type="password" class="form-control" name="user.password" placeholder="Digite a senha desejada">
 							</div>
 							
 							<div class="form-group">
-								<label>Nome:</label>
-								<input type="text" class="form-control" placeholder="Digite seu nome">
+								<label for="user.name">Nome:</label>
+								<input type="text" class="form-control" name="user.name" placeholder="Digite seu nome">
 							</div>
 							
 							<div class="form-group">
-								<label>Email:</label>
-								<input type="text" class="form-control" placeholder="Digite seu e-mail">
+								<label for="user.email">Email:</label>
+								<input type="text" class="form-control" name="user.email" placeholder="Digite seu e-mail">
 							</div>							
 							
 							<div class="form-group"><input type="submit" value="Cadastrar" class="btn btn-success btn-lg"/></div>	
