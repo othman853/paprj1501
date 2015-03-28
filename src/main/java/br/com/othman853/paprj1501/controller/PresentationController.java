@@ -4,6 +4,7 @@ import br.com.caelum.vraptor.Path;
 
 public class PresentationController {
 	
+	@Path("/")
 	public void home(){
 		
 	}
