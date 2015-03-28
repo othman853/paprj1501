@@ -2,15 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-	
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/assets/css/bootstrap/css/bootstrap.css" rel="stylesheet">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<title>Cadastrar Usuário</title>	
-</head>
+	<head>	
+		<script src="/assets/js/user-registration.js"></script>
+		<jsp:include page="/WEB-INF/jsp/includes/assets.jsp" />			
+		<title>Cadastrar Usuário</title>	
+	</head>
 
 	<body>
 		<div class="container-fluid">
@@ -23,28 +19,33 @@
 					</div>
 					
 					<div class="panel-body">
-						<form class="form-horizontal" action="${linkTo[UserController].register}" method="post">
+						<form id="user-registration" class="form-horizontal" action="${linkTo[UserController].register}" method="post">
 							<div class="form-group">
 								<label for="user.login">Login:</label>
-								<input type="text" class="form-control" name="user.login" placeholder="Digite o login desejado">
+								<input type="text" id="user-login" class="form-control" name="user.login" placeholder="Digite o login desejado">
 							</div>
 							
 							<div class="form-group">
 								<label for="user.password">Senha:</label>
-								<input type="password" class="form-control" name="user.password" placeholder="Digite a senha desejada">
+								<input type="password" id="user-password" class="form-control" name="user.password" placeholder="Digite a senha desejada">
+							</div>
+							
+							<div class="form-group">
+								<label for="password-validation">Repita a Senha:</label>
+								<input type="password" id="user-repeated-password" class="form-control" name="password-validation" placeholder="Repita a senha digitada anteriormente">
 							</div>
 							
 							<div class="form-group">
 								<label for="user.name">Nome:</label>
-								<input type="text" class="form-control" name="user.name" placeholder="Digite seu nome">
+								<input type="text" id="user-name" class="form-control" name="user.name" placeholder="Digite seu nome">
 							</div>
 							
 							<div class="form-group">
 								<label for="user.email">Email:</label>
-								<input type="text" class="form-control" name="user.email" placeholder="Digite seu e-mail">
+								<input type="text" id="user-email" class="form-control" name="user.email" placeholder="Digite seu e-mail">
 							</div>							
 							
-							<div class="form-group"><input type="submit" value="Cadastrar" class="btn btn-success btn-lg"/></div>	
+							<div class="form-group"><input type="submit" id="user-registration-submit" value="Cadastrar" class="btn btn-success btn-lg"/></div>	
 						</form>
 					</div>					
 				</div>
