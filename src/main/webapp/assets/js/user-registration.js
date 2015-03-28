@@ -9,29 +9,17 @@ Paprj1501.UserRegistration = function UserRegistration() {
 		var $repeatedPassword = $form.find("#user-repeated-password");
 		var $email = $form.find("#user-email");
 		
-		var validSubmission = true;
-
-		if (isEmpty($login)) {
-			detachWithError($login, "Digite um login.");
-			validSubmission = false;
-		}
+		var fields = [{field:$login, message:"Digite o Login."}, {field:$name, message:"Digite o nome."}, 
+		              {field:$password, message:"Digite uma senha."}, {field:$repeatedPassword, message:"Digite a senha novamente."}, 
+		              {field:$email, message:"Digite um email."}];
 		
-		if (isEmpty($name)) {
-			detachWithError($name, "Digite um nome.");
-			validSubmission = false;
-		}
-		if (isEmpty($password)) {
-			detachWithError($password, "Digite uma senha.");
-			validSubmission = false;
-		}
-		if (isEmpty($repeatedPassword)) {
-			detachWithError($repeatedPassword, "Repita a sennha digitada.");
-			validSubmission = false;
-		}
-		if (isEmpty($email)) {			
-			detachWithError($email, "Digite um email.");
-			validSubmission = false;
-		}
+		var validSubmission = true;
+		
+		fields.forEach(function(entry){			
+			validSubmission = !isEmpty(entry.field);			
+			(validSubmission)? removeDetach(entry.field):detachWithError(entry.field, entry.message);
+		});
+
 		if (!isValidPassword($password, $repeatedPassword)) {
 			detachWithError($password, "As senhas digitadas são diferentes.");
 			detachWithError($repeatedPassword, "As senhas digitadas são diferentes.");
@@ -53,7 +41,7 @@ Paprj1501.UserRegistration = function UserRegistration() {
 	var detachWithError = function detachWithError($field, message){
 		$parent = $field.parents(".form-group"); 
 		
-		$parent.addClass("has-error has-feedback");
+		$parent.addClass("has-error");
 		
 		if($parent.find(".error-message").length === 0){
 			$parent.append("<span class='error-message'> *" + message + "</span>");			
@@ -65,7 +53,12 @@ Paprj1501.UserRegistration = function UserRegistration() {
 	}
 	
 	var removeDetach = function removeDetach($field){
+		$parent = $field.parents(".form-group");
 		
+		if($parent.hasClass("has-error")){
+			$parent.removeClass("has-error");
+			$parent.find(".error-message").remove();
+		}
 	}
 
 	return {
