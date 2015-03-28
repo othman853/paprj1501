@@ -1,7 +1,5 @@
 package br.com.othman853.paprj1501.dao;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,19 +15,19 @@ public class UserDao {
 		this.session = session;
 	}
 	
-	public void saveOrUpdate(User user){
-		System.out.println("Email: " + user.getEmail());		
-		System.out.println("Login: " + user.getLogin());
-		System.out.println("Name: " + user.getName());
-		System.out.println("Password: " + user.getPassword());
-		
+	public void saveOrUpdate(User user){				
 		Transaction tx = session.beginTransaction();
 		session.saveOrUpdate(user);
 		tx.commit();
 	}
 	
-	public List<User> all(){
-		return session.createCriteria(User.class).list();
+	public boolean isValidUser(User user){
+		
+		return true;
+	}
+
+	public User find(long id) {
+		return (User) session.get(User.class, id);		
 	}
 
 }
