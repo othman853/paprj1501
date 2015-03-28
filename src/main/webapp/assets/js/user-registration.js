@@ -51,8 +51,13 @@ Paprj1501.UserRegistration = function UserRegistration() {
 	}	
 	
 	var detachWithError = function detachWithError($field, message){
-		$field.parents(".form-group").addClass("has-error has-feedback");
-		$field.after("<span class='error-message'> *" + message + "</span>");
+		$parent = $field.parents(".form-group"); 
+		
+		$parent.addClass("has-error has-feedback");
+		
+		if($parent.find(".error-message").length === 0){
+			$parent.append("<span class='error-message'> *" + message + "</span>");			
+		}		
 	}
 	
 	var detachWithSuccess = function detachWithSuccess($field, message){
