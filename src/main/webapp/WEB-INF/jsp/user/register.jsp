@@ -19,30 +19,32 @@
 					</div>
 					
 					<div class="panel-body">
-						<form id="user-registration" class="form-horizontal" action="${linkTo[UserController].register}" method="post">
+						<form id="user-registration" class="form-horizontal" action="${linkTo[UserController].save}" method="post">
+							<input type="hidden" name="user.id" value="${user.id}" />
+						
 							<div class="form-group">
-								<label for="user.login">Login:</label>
-								<input type="text" id="user-login" class="form-control" name="user.login" placeholder="Digite o login desejado">
+								<label class="control-label" for="user.login">Login:</label>
+								<input type="text" id="user-login" class="form-control" name="user.login" value="${user.login}" placeholder="Digite o login desejado">
 							</div>
 							
 							<div class="form-group">
-								<label for="user.password">Senha:</label>
-								<input type="password" id="user-password" class="form-control" name="user.password" placeholder="Digite a senha desejada">
+								<label class="control-label" for="user.password">Senha:</label>
+								<input type="password" id="user-password" class="form-control" name="user.password" value="${user.password}" placeholder="Digite a senha desejada">
 							</div>
 							
 							<div class="form-group">
-								<label for="password-validation">Repita a Senha:</label>
+								<label class="control-label" for="password-validation">Repita a Senha:</label>
 								<input type="password" id="user-repeated-password" class="form-control" name="password-validation" placeholder="Repita a senha digitada anteriormente">
 							</div>
 							
 							<div class="form-group">
-								<label for="user.name">Nome:</label>
-								<input type="text" id="user-name" class="form-control" name="user.name" placeholder="Digite seu nome">
+								<label class="control-label" for="user.name">Nome:</label>
+								<input type="text" id="user-name" class="form-control" name="user.name"  value="${user.name}" placeholder="Digite seu nome">
 							</div>
 							
 							<div class="form-group">
-								<label for="user.email">Email:</label>
-								<input type="text" id="user-email" class="form-control" name="user.email" placeholder="Digite seu e-mail">
+								<label class="control-label" for="user.email">Email:</label>
+								<input type="text" id="user-email" class="form-control" name="user.email" value="${user.email}" placeholder="Digite seu e-mail">
 							</div>							
 							
 							<div class="form-group"><input type="submit" id="user-registration-submit" value="Cadastrar" class="btn btn-success btn-lg"/></div>	
